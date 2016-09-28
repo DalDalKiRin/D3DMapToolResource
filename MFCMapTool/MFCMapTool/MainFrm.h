@@ -4,6 +4,18 @@
 
 #pragma once
 
+//툴 경계선을 LOCK걸기 위한 클래스 정의
+class CSplitterX : public CSplitterWnd
+{
+public:
+	CSplitterX();
+	~CSplitterX();
+
+protected:
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	DECLARE_MESSAGE_MAP();
+};
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -13,7 +25,9 @@ protected: // serialization에서만 만들어집니다.
 
 // 특성입니다.
 protected:
-	CSplitterWnd m_wndSplitter;
+	//CSplitterWnd m_wndSplitter;
+	CSplitterX m_wndSplitter; //툴 경계선 LOCK걸기
+
 public:
 
 // 작업입니다.
@@ -42,5 +56,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 };
+
+
 
 

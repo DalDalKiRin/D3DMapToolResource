@@ -28,6 +28,8 @@ END_MESSAGE_MAP()
 
 // CMFCMapToolApp 생성
 
+CMFCMapToolView* g_pView;
+
 CMFCMapToolApp::CMFCMapToolApp()
 {
 	// TODO: 아래 응용 프로그램 ID 문자열을 고유 ID 문자열로 바꾸십시오(권장).

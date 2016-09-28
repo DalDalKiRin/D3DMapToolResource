@@ -15,6 +15,9 @@
 #define new DEBUG_NEW
 #endif
 
+//CMFCMapToolView 에서 선언된 g_pView를 전역으로 사용하겠다.
+extern CMFCMapToolView* g_pView;
+
 // CMainFrame
 
 IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
@@ -22,6 +25,18 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 END_MESSAGE_MAP()
+
+//툴 경계선 LOCK걸기
+BEGIN_MESSAGE_MAP(CSplitterX, CSplitterWnd)
+	ON_WM_NCHITTEST()
+END_MESSAGE_MAP()
+CSplitterX::CSplitterX() {}
+CSplitterX::~CSplitterX() {}
+
+LRESULT CSplitterX::OnNcHitTest(CPoint point)
+{
+	return HTNOWHERE;
+}
 
 static UINT indicators[] =
 {
@@ -87,14 +102,16 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	//가로 길이
 	int nSizeX = rect.right - rect.left;
-	int nMenuSize = nSizeX / 6; //가로길이의 1/6
+	int nMenuSize = nSizeX / 4; //가로길이의 1/6
 
 	//뷰 나누기
 	if (!m_wndSplitter.CreateView(0, 0, RUNTIME_CLASS(CMFCMapToolView), CSize(nSizeX - nMenuSize, 0),pContext)) //this == 메인프레임
 		return FALSE;
 	if (!m_wndSplitter.CreateView(0, 1, RUNTIME_CLASS(MFCMenuFormView), CSize(nMenuSize, 0),pContext)) //this == 메인프레임
 		return FALSE;
+	//CMFCMapToolView* g_pView;
 
+	g_pView = (CMFCMapToolView*)m_wndSplitter.GetPane(0, 0);
 
 }
 
