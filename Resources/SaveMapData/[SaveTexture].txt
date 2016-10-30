@@ -1,0 +1,4 @@
+[../../MapToolResource/Resources/TerrainTexture/land_0.bmp]
+[../../MapToolResource/Resources/TerrainTexture/land_1.bmp]
+[../../MapToolResource/Resources/TerrainTexture/land_2.bmp]
+[../../MapToolResource/Resources/TerrainTexture/land_3.bmp]
